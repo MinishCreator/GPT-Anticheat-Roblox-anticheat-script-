@@ -1,0 +1,212 @@
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+-- Main
+while wait() do
+	local Character = LocalPlayer.Character
+	local Humanoid = Character and Character:FindFirstChild("Humanoid")
+	
+	if Humanoid then
+		-- WalkSpeed Check
+		if Humanoid.WalkSpeed > 16 then
+			LocalPlayer:Kick("Walkspeed hack detected.")
+		end
+		
+		-- JumpHeight Check
+		if Humanoid.JumpPower > 50 then
+			LocalPlayer:Kick("Jump boost hack detected.")
+		end
+		
+		-- Health Check
+		if Humanoid.Health > Humanoid.MaxHealth then
+			LocalPlayer:Kick("Infinite health hack detected.")
+		end
+		
+		-- Gravity Check
+		if Humanoid.Gravity ~= 196.2 then
+			LocalPlayer:Kick("Gravity manipulation detected.")
+		end
+		
+		-- Animation Speed Check
+		local humanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
+		if humanoidRootPart and humanoidRootPart.AssemblyLinearVelocity.Magnitude > 250 then
+			LocalPlayer:Kick("Speed hacks detected.")
+		end
+		
+		-- Headless Check
+		if not Character:FindFirstChild("Head") then
+			LocalPlayer:Kick("Headless hack detected.")
+		end
+		
+		-- Noclip Check
+		local torso = Character:FindFirstChild("Torso") or Character:FindFirstChild("UpperTorso")
+		if torso and not torso.CanCollide then
+			LocalPlayer:Kick("Noclip hack detected.")
+		end
+		
+		-- Fly Check
+		if Character:FindFirstChild("Humanoid").Sit then
+			LocalPlayer:Kick("Fly hack detected.")
+		end
+		
+		-- Infinite Jump Check
+		if Humanoid:FindFirstChild("Control") and Humanoid.Control:IsA("BoolValue") and Humanoid.Control.Value then
+			LocalPlayer:Kick("Infinite jump hack detected.")
+		end
+		
+		-- Animation Morph Check
+		local humanoidDescription = Character:FindFirstChildOfClass("HumanoidDescription")
+		if humanoidDescription and humanoidDescription:FindFirstChild("BodyTypeScale") then
+			LocalPlayer:Kick("Animation morph hack detected.")
+		end
+		
+		-- Tool Teleportation Check
+		local primaryPart = Character.PrimaryPart
+		if primaryPart and primaryPart.Position.Y > 5000 then
+			LocalPlayer:Kick("Tool teleportation hack detected.")
+		end
+		
+		-- God Mode Check
+		if Humanoid.Health <= 0 then
+			LocalPlayer:Kick("God mode hack detected.")
+		end
+		
+		-- Exploit GUI Check
+		if game.CoreGui:FindFirstChild("RobloxGui") or game.Players.LocalPlayer.PlayerGui:FindFirstChild("ExploitGui") then
+			LocalPlayer:Kick("Exploit GUI detected.")
+		end
+		
+		-- ClickTeleport Check
+		if Character:FindFirstChildOfClass("ClickDetector") then
+			LocalPlayer:Kick("Click teleport hack detected.")
+		end
+		
+		-- Speed Hack Check
+		if Humanoid.WalkSpeed > Humanoid.WalkSpeed + 5 then
+			LocalPlayer:Kick("Speed hack detected.")
+		end
+		
+		-- Super Punch Check
+		local tool = Character:FindFirstChildOfClass("Tool")
+		if tool and tool:FindFirstChild("Handle") and tool.Handle.Size.Magnitude > 30 then
+			LocalPlayer:Kick("Super punch hack detected.")
+		end
+		
+		-- Invisibility Check
+		if Character:FindFirstChild("Opacity") and Character.Opacity.Value < 1 then
+		
+LocalPlayer:Kick("Invisibility hack detected.")
+	end
+	
+	-- TP Detection Check
+	local tpConnections = Character:GetDescendants()
+	for _, connection in ipairs(tpConnections) do
+		if connection:IsA("RemoteEvent") or connection:IsA("RemoteFunction") then
+			LocalPlayer:Kick("TP detection hack detected.")
+		end
+	end
+	
+	-- Wallhack Check
+	local raycastParams = RaycastParams.new()
+	raycastParams.FilterDescendantsInstances = {Character}
+	raycastParams.IgnoreWater = true
+	local result = workspace:Raycast(Character.Head.Position, (Character.Head.CFrame.LookVector * 10), raycastParams)
+	if result then
+		LocalPlayer:Kick("Wallhack detected.")
+	end
+	
+	-- ESP Check
+	if Character:FindFirstChild("ESPFolder") then
+		LocalPlayer:Kick("ESP hack detected.")
+	end
+	
+	-- Kill Aura Check
+	local humanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
+	local nearbyCharacters = workspace:FindPartsInRegion3(Region3.new(humanoidRootPart.Position - Vector3.new(10, 10, 10), humanoidRootPart.Position + Vector3.new(10, 10, 10)), nil, math.huge)
+	for _, part in ipairs(nearbyCharacters) do
+		if part:IsA("BasePart") and part.Parent ~= Character and part.Parent:FindFirstChild("Humanoid") then
+			LocalPlayer:Kick("Kill aura hack detected.")
+		end
+	end
+	
+	-- Animation Speed Modification Check
+	if Humanoid:FindFirstChild("AnimationController") and Humanoid.AnimationController:GetPlayingAnimationTracks().Length > 0 then
+		local playingTracks = Humanoid.AnimationController:GetPlayingAnimationTracks()
+		for _, track in ipairs(playingTracks) do
+			if track and track.Speed > 2 then
+				LocalPlayer:Kick("Animation speed modification detected.")
+			end
+		end
+	end
+else
+	-- No Humanoid Check
+	LocalPlayer:Kick("Invalid character detected.")
+end
+
+-- ...
+
+-- Main
+while wait() do
+	-- ...
+
+	-- Aimbot Check
+	local tool = Character:FindFirstChildOfClass("Tool")
+	if tool and tool:FindFirstChild("AimbotEnabled") and tool.AimbotEnabled.Value then
+		LocalPlayer:Kick("Aimbot hack detected.")
+	end
+	
+	-- Flyglitch Check
+	if Character:FindFirstChild("Humanoid").RootPart:FindFirstChild("FlyglitchEnabled") then
+		LocalPlayer:Kick("Flyglitch hack detected.")
+	end
+	
+	-- Teleport Check
+	local teleportConnections = Character:GetDescendants()
+	for _, connection in ipairs(teleportConnections) do
+		if connection:IsA("RemoteEvent") and connection.Name == "TeleportEvent" then
+			LocalPlayer:Kick("Teleport hack detected.")
+		end
+	end
+	
+	-- Steal Tools Check
+	if Character:FindFirstChildOfClass("Backpack"):FindFirstChildOfClass("Tool") then
+		LocalPlayer:Kick("Tool stealing hack detected.")
+	end
+	
+	-- ESP Check
+	if Character:FindFirstChild("ESPEnabled") and Character.ESPEnabled.Value then
+		LocalPlayer:Kick("ESP hack detected.")
+	end
+	
+	-- Team Check
+	if LocalPlayer.Team ~= nil and Character:FindFirstChild("Humanoid").Team ~= LocalPlayer.Team then
+		LocalPlayer:Kick("Team hack detected.")
+	end
+	
+	-- God Mode Check (Invincibility)
+	if Character:FindFirstChild("Humanoid"):FindFirstChild("Invincible") then
+		LocalPlayer:Kick("God mode hack (invincibility) detected.")
+	end
+	
+	-- Auto-Respawn Check
+	if Character:FindFirstChild("AutoRespawnEnabled") and Character.AutoRespawnEnabled.Value then
+		LocalPlayer:Kick("Auto-respawn hack detected.")
+	end
+	
+	-- Animation Modification Check
+	local humanoidDescription = Character:FindFirstChildOfClass("HumanoidDescription")
+	if humanoidDescription and humanoidDescription:FindFirstChild("AnimationModifier") then
+		LocalPlayer:Kick("Animation modification hack detected.")
+	end
+	
+	-- Invisible Parts Check
+	local invisibleParts = Character:GetDescendants()
+	for _, part in ipairs(invisibleParts) do
+		if part:IsA("BasePart") and part.Transparency == 0 and part.Reflectance == 0 then
+			LocalPlayer:Kick("Invisible parts hack detected.")
+		end
+	end
+end
+
+--Keep mind in created this
+using ChatGPT as a joke so,Dont expect me to fix bugs.
